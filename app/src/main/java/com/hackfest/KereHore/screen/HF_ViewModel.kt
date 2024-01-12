@@ -94,7 +94,7 @@ import javax.inject.Inject
 
         init {
             viewModelScope.launch {
-                delay(3000L)
+                delay(2000L)
                 _isReady.value = true
             }
         }

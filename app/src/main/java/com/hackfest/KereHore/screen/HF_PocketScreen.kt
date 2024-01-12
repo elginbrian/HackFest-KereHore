@@ -113,7 +113,7 @@ fun HF_PocketScreen(
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(75.dp),
+                        .height(60.dp),
                     shape = RectangleShape,
                     colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
                     elevation = CardDefaults.cardElevation(10.dp)
@@ -227,9 +227,9 @@ fun HF_PocketScreen(
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(75.dp),
+                            .height(60.dp),
                         shape = RectangleShape,
-                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary),
+                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
                         elevation = CardDefaults.cardElevation(10.dp)
                     ) {
                         Row(

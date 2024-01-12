@@ -1,12 +1,12 @@
-Team: Super Square\n
-Chapter: HF24-39 / Universitas Brawijaya\n
-Product name: KereHore!\n
+Team: Super Square
+Chapter: HF24-39 / Universitas Brawijaya
+Product name: KereHore!
 
-Hustler: Andreas Bagasgoro\n
-Hipster: Gantang Satria Yudha\n
-Hacker:\n
-    1. Elgin Brian Wahyu Bramadhika\n
-    2. Muhammad Rizqi Aditya Firmansyah\n
+Hustler: Andreas Bagasgoro
+Hipster: Gantang Satria Yudha
+Hacker: 
+    1. Elgin Brian Wahyu Bramadhika 
+    2. Muhammad Rizqi Aditya Firmansyah 
 
 Screenshot:\n
 ![Sign In Screen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/c18a15b7-0649-48df-b2b2-590ef97b0c56) 

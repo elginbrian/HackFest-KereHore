@@ -11,6 +11,7 @@ import com.hackfest.KereHore.signIn.HF_SignInResult
 import com.hackfest.KereHore.signIn.HF_SignInState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -84,5 +85,17 @@ import javax.inject.Inject
 
         fun resetState(){
             _state.update { HF_SignInState() }
+        }
+    }
+
+    class HF_SplashScreenViewModel: ViewModel() {
+        private val _isReady = MutableStateFlow(false)
+        val isReady = _isReady.asStateFlow()
+
+        init {
+            viewModelScope.launch {
+                delay(3000L)
+                _isReady.value = true
+            }
         }
     }

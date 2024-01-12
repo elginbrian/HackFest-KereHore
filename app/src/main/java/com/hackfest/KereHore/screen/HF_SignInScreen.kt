@@ -18,8 +18,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.hackfest.KereHore.signIn.HF_SignInState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.hackfest.KereHore.navigation.HF_NavEnum
+import com.hackfest.KereHore.widgets.HF_BarButton
 
 
 @Composable
@@ -39,17 +41,31 @@ fun HF_SignInScreen(
         modifier = Modifier.fillMaxSize(),
     ){
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 10.dp, end = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Bottom
         ) {
-            Button(onClick = { onSignInClick }) {
-                Text(text = "Sign In")
+            Text(text = "HF24-39 / Super Square", fontSize = 12.sp)
+            Text(text = "Hackfest second stage submission", fontSize = 12.sp)
+            Text(text = "Disclaimer: UI of this app is still temporary", fontSize = 12.sp)
+            Spacer(modifier = Modifier.padding(10.dp))
+
+            HF_BarButton(text = "Sign In"){ trigger ->
+                if(trigger.isNotEmpty()){
+                    onSignInClick
+                }
+            }
+
+            Spacer(modifier = Modifier.padding(5.dp))
+
+            HF_BarButton(text = "HomeScreen"){trigger ->
+                if(trigger.isNotEmpty()){
+                    navController.navigate(route = HF_NavEnum.HF_HomeScreen.name)
+                }
             }
             Spacer(modifier = Modifier.padding(15.dp))
-            Button(onClick = { navController.navigate(route = HF_NavEnum.HF_HomeScreen.name) }) {
-                Text(text = "HomeScreen")
-            }
         }
     }
 }

@@ -242,10 +242,14 @@ fun HF_HomeScreen(
                             }
                             HF_CircleButton(imageVector = Icons.Default.Home) {trigger ->
                                 if(trigger.isNotEmpty()){
-                                    displayDebug.value = !displayDebug.value
+                                    //displayDebug.value = !displayDebug.value
                                 }
                             }
-                            HF_CircleButton(imageVector = Icons.Default.AccountCircle)
+                            HF_CircleButton(imageVector = Icons.Default.AccountCircle){trigger ->
+                                if(trigger.isNotEmpty()){
+                                    exceptionString.value = "under development"
+                                }
+                            }
                         }
                     }
 
@@ -356,7 +360,7 @@ fun HF_HomeScreen(
                                         addPocketFlag.value = !addPocketFlag.value
 
                                     } else if (addTotalBalanceFlag.value == true) {
-                                        if(newTotalBalance.value.toDouble() > currentAssignedBalance.toDouble()) {
+                                        if(newTotalBalance.value.toDouble() >= currentAssignedBalance.toDouble()) {
                                             addTotalBalance(HF_TotalBalanceObject(totalBalance = newTotalBalance.value))
                                             newTotalBalance.value = ""
                                             addTotalBalanceFlag.value = !addTotalBalanceFlag.value

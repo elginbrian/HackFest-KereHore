@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -127,7 +129,7 @@ fun HF_TextField(
     )
 }
 
-@Preview
+//@Preview
 @Composable
 fun HF_PopUpCard(
     text: String = "Lorem Ipsum",
@@ -158,6 +160,30 @@ fun HF_PopUpCard(
             }
         }
         Spacer(modifier = Modifier.padding(100.dp))
+    }
+}
+
+@Preview
+@Composable
+fun HF_BarButton(
+    text: String = "Lorem Ipsum",
+    whenWidgetClicked: (String) -> Unit = {}
+){
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .clickable { whenWidgetClicked("trigger") },
+        shape = RoundedCornerShape(50.dp),
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(text = text, fontSize = 18.sp)
+        }
     }
 }
 

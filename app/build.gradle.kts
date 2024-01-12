@@ -108,6 +108,8 @@ dependencies {
     implementation("com.android.support:multidex:1.0.3")
 
     //implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }
 
 kapt{

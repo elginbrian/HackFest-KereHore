@@ -14,11 +14,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -71,6 +77,9 @@ fun HF_PocketScreen(
         mutableStateOf(false)
     }
     var displayReportForm = remember {
+        mutableStateOf(false)
+    }
+    var displayHistory = remember {
         mutableStateOf(false)
     }
     var newPocketBalance = remember {
@@ -164,41 +173,47 @@ fun HF_PocketScreen(
                                 horizontalArrangement = Arrangement.End,
                                 verticalAlignment = Alignment.CenterVertically
                             ){
-                                HF_CircleButton(imageVector = Icons.Default.KeyboardArrowDown){trigger ->
-                                    if(trigger.isNotEmpty()){
-                                        displayReportForm.value = !displayReportForm.value
-                                    }
-                                }
                                 Spacer(modifier = Modifier.padding(5.dp))
-                                HF_CircleButton(imageVector = Icons.Default.AddCircle){trigger ->
-                                    if(trigger.isNotEmpty()){
-                                        displayAssignForm.value = !displayAssignForm.value
+                                if(pocket[0].pocketBalance.toDouble() < 1){
+                                    HF_CircleButton(imageVector = Icons.Default.AddCircle){trigger ->
+                                        if(trigger.isNotEmpty()){
+                                            displayAssignForm.value = !displayAssignForm.value
+                                        }
                                     }
                                 }
                             }
                         }
                     }
 
-                    Card(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(400.dp)
-                        .padding(top = 20.dp, start = 10.dp, end = 10.dp, bottom = 15.dp)){
-                        LazyColumn(modifier = Modifier
-                            .fillMaxSize()
-                            .padding(10.dp)){
-                            items(listOfPocketHistory){pocketHistory ->
-                                Card(modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(60.dp)
-                                    .padding(bottom = 10.dp),
-                                    colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
-                                ){
-                                    Column(
-                                        modifier = Modifier.fillMaxSize(),
-                                        horizontalAlignment = Alignment.CenterHorizontally,
-                                        verticalArrangement = Arrangement.Center
-                                    ) {
-                                        Text(text = pocketHistory)
+                    if(displayHistory.value == true){
+                        Card(modifier = Modifier
+                            .fillMaxWidth()
+                            .height(400.dp)
+                            .padding(top = 20.dp, start = 10.dp, end = 10.dp, bottom = 15.dp)){
+                            Column(
+                                modifier = Modifier.fillMaxWidth().height(50.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                Text(text = "Spending History", fontSize = 20.sp)
+                            }
+                            LazyColumn(modifier = Modifier
+                                .fillMaxSize()
+                                .padding(10.dp)){
+                                items(listOfPocketHistory){pocketHistory ->
+                                    Card(modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(60.dp)
+                                        .padding(bottom = 10.dp),
+                                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
+                                    ){
+                                        Column(
+                                            modifier = Modifier.fillMaxSize(),
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            verticalArrangement = Arrangement.Center
+                                        ) {
+                                            Text(text = pocketHistory)
+                                        }
                                     }
                                 }
                             }
@@ -216,7 +231,29 @@ fun HF_PocketScreen(
                         shape = RectangleShape,
                         colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary),
                         elevation = CardDefaults.cardElevation(10.dp)
-                    ) {}
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalArrangement = Arrangement.SpaceEvenly,
+                            verticalAlignment = Alignment.CenterVertically
+                        ){
+                            HF_CircleButton(imageVector = Icons.Default.Create) { trigger ->
+                                if(trigger.isNotEmpty()){
+                                    exceptionString.value = "under development"
+                                }
+                            }
+                            HF_CircleButton(imageVector = Icons.Default.Add) {trigger ->
+                                if(trigger.isNotEmpty()){
+                                    displayReportForm.value = !displayReportForm.value
+                                }
+                            }
+                            HF_CircleButton(imageVector = Icons.Default.List){trigger ->
+                                if(trigger.isNotEmpty()){
+                                    displayHistory.value = !displayHistory.value
+                                }
+                            }
+                        }
+                    }
 
                 } else if (displayAssignForm.value == true){
                     Card(
@@ -282,7 +319,7 @@ fun HF_PocketScreen(
                             Spacer(modifier = Modifier.padding(10.dp))
                             HF_CircleButton(imageVector = Icons.Default.Check){trigger ->
                                 if (trigger.isNotEmpty()) {
-                                    if(newReportedSpending.value.toDouble() < pocket[0].pocketBalance.toDouble()) {
+                                    if(newReportedSpending.value.toDouble() <= pocket[0].pocketBalance.toDouble()) {
                                         pocket[0].pocketBalance =
                                             (pocket[0].pocketBalance.toDouble() - newReportedSpending.value.toDouble()).toString()
                                         currentTotalBalance =
@@ -318,6 +355,7 @@ fun HF_PocketScreen(
                     HF_PopUpCard(
                         text = when(exceptionString.value){
                             "invalid report" -> "Spending report can't be smaller than the pocket balance"
+                            "under development" -> "This feature is not finished yet"
                             else -> ""
                         },
                         trigger = {trigger ->

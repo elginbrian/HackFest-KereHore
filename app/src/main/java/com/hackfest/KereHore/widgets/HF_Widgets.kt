@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -148,7 +149,7 @@ fun HF_PopUpCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = text, fontSize = 16.sp, fontWeight = FontWeight(500))
+                Text(text = text, fontSize = 16.sp, fontWeight = FontWeight(500), textAlign = TextAlign.Center)
                 HF_CircleButton(imageVector = Icons.Default.Check) {trigger ->
                     if(trigger.isNotEmpty()){
                         trigger("trigger")

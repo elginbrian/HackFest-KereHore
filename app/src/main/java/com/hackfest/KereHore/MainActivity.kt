@@ -12,17 +12,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.android.gms.auth.api.identity.Identity
 import com.hackfest.KereHore.database.HF_DatabaseDao
 import com.hackfest.KereHore.database.HF_DatabaseDao2
 //import androidx.hilt.navigation.compose.hiltViewModel
 import com.hackfest.KereHore.navigation.HF_NavHost
 import com.hackfest.KereHore.repository.HF_Repository
 import com.hackfest.KereHore.repository.HF_Repository2
+import com.hackfest.KereHore.screen.HF_SignInViewModel
 import com.hackfest.KereHore.screen.HF_ViewModel
 import com.hackfest.KereHore.screen.HF_ViewModel2
+import com.hackfest.KereHore.signIn.HF_GoogleAuthUIClient
 import com.hackfest.KereHore.ui.theme.KereHoreTheme
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -37,7 +43,17 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val HF_ViewModel: HF_ViewModel by viewModels()
                     val HF_ViewModel2: HF_ViewModel2 by viewModels()
-                    HF_KereHore(content = { HF_NavHost(HF_ViewModel = HF_ViewModel, HF_ViewModel2 = HF_ViewModel2) })
+                    val HF_SignInViewModel: HF_SignInViewModel by viewModels()
+                    val appContext = applicationContext
+                    //val HF_SignInViewModels = viewModel<HF_SignInViewModel>()
+                    //val state by HF_SignInViewModels.state.collectAsStateWithLifecycle()
+
+                    HF_KereHore(content = { HF_NavHost(
+                        HF_ViewModel = HF_ViewModel,
+                        HF_ViewModel2 = HF_ViewModel2,
+                        HF_SignInViewModel = HF_SignInViewModel,
+                        appContext = appContext
+                    ) })
                 }
             }
         }

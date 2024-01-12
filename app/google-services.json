@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "981426275672",
+    "project_id": "hackfest-supersquare",
+    "storage_bucket": "hackfest-supersquare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981426275672:android:b6ce22157e09a3bffdd12d",
+        "android_client_info": {
+          "package_name": "com.hackfest.KereHore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981426275672-9jsvjf4lt1g104honhgo2oe4oh84edfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackfest.KereHore",
+            "certificate_hash": "c9bf1f3fbedc7d4992361ef6e9a6fe32f4c8613d"
+          }
+        },
+        {
+          "client_id": "981426275672-b9k03pnilgp3qnem62uenraoi9eh1nj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6c1DE_zewyy2pAQ5YJrfGfkmC7ohEw0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981426275672-b9k03pnilgp3qnem62uenraoi9eh1nj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

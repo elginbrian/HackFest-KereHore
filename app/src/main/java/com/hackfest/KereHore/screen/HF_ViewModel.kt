@@ -7,11 +7,14 @@ import com.hackfest.KereHore.model.HF_PocketObject
 import com.hackfest.KereHore.model.HF_TotalBalanceObject
 import com.hackfest.KereHore.repository.HF_Repository
 import com.hackfest.KereHore.repository.HF_Repository2
+import com.hackfest.KereHore.signIn.HF_SignInResult
+import com.hackfest.KereHore.signIn.HF_SignInState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject
@@ -66,4 +69,20 @@ import javax.inject.Inject
         fun removeTotalBalance(HF_TotalBalanceObject: HF_TotalBalanceObject) = viewModelScope.launch { HF_Repository2.deleteTotalBalance(HF_TotalBalanceObject) }
         fun deleteAllBalance(HF_TotalBalanceObject: HF_TotalBalanceObject)   = viewModelScope.launch { HF_Repository2.deleteAllBalance(HF_TotalBalanceObject) }
         fun updateTotalBalance(totalBalanceID: UUID, totalBalance: String)   = viewModelScope.launch { HF_Repository2.updateTotalBalance(totalBalanceID, totalBalance) }
+    }
+
+    class HF_SignInViewModel: ViewModel() {
+        private val _state = MutableStateFlow(HF_SignInState())
+        val state = _state.asStateFlow()
+
+        fun onSignInResult(result: HF_SignInResult){
+            _state.update { it.copy(
+                isSignInSuccesful = result.data != null,
+                signInError = result.errorMessege
+            ) }
+        }
+
+        fun resetState(){
+            _state.update { HF_SignInState() }
+        }
     }

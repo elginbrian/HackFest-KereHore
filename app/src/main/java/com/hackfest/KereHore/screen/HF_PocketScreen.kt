@@ -105,7 +105,9 @@ fun HF_PocketScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(75.dp),
-                    shape = RectangleShape
+                    shape = RectangleShape,
+                    colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
+                    elevation = CardDefaults.cardElevation(10.dp)
                 ) {
                     Row(
                         modifier = Modifier
@@ -211,7 +213,9 @@ fun HF_PocketScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(75.dp),
-                        shape = RectangleShape
+                        shape = RectangleShape,
+                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary),
+                        elevation = CardDefaults.cardElevation(10.dp)
                     ) {}
 
                 } else if (displayAssignForm.value == true){
@@ -226,6 +230,8 @@ fun HF_PocketScreen(
                             verticalArrangement = Arrangement.Top,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
+                            Spacer(modifier = Modifier.padding(10.dp))
+                            Text("Alocate balance to this pocket", fontSize = 20.sp)
                             Spacer(modifier = Modifier.padding(10.dp))
                             HF_TextField(
                                 keyboardType = KeyboardType.Number,
@@ -261,6 +267,8 @@ fun HF_PocketScreen(
                             verticalArrangement = Arrangement.Top,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
+                            Spacer(modifier = Modifier.padding(10.dp))
+                            Text("Report your spending", fontSize = 20.sp)
                             Spacer(modifier = Modifier.padding(10.dp))
                             HF_TextField(
                                 keyboardType = KeyboardType.Number,

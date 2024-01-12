@@ -17,12 +17,15 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -121,7 +124,9 @@ fun HF_HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(75.dp),
-                    shape = RectangleShape
+                    shape = RectangleShape,
+                    colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
+                    elevation = CardDefaults.cardElevation(10.dp)
                 ) {
                     Row(
                         modifier = Modifier
@@ -130,7 +135,12 @@ fun HF_HomeScreen(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = "FUNCTIONAL TEST", fontSize = 20.sp, fontWeight = FontWeight(500))
+                        Text(
+                            text = "FUNCTIONAL TEST",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight(500),
+                            color = MaterialTheme.colorScheme.inverseOnSurface
+                        )
                     }
                 }
             },
@@ -216,18 +226,26 @@ fun HF_HomeScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(75.dp),
-                        shape = RectangleShape
+                        shape = RectangleShape,
+                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary),
+                        elevation = CardDefaults.cardElevation(10.dp)
                     ) {
                         Row(
                             modifier = Modifier.fillMaxSize(),
-                            horizontalArrangement = Arrangement.Center,
+                            horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            HF_CircleButton(imageVector = Icons.Default.Build) {trigger ->
+                            HF_CircleButton(imageVector = Icons.Default.Star) { trigger ->
+                                if(trigger.isNotEmpty()){
+                                    exceptionString.value = "under development"
+                                }
+                            }
+                            HF_CircleButton(imageVector = Icons.Default.Home) {trigger ->
                                 if(trigger.isNotEmpty()){
                                     displayDebug.value = !displayDebug.value
                                 }
                             }
+                            HF_CircleButton(imageVector = Icons.Default.AccountCircle)
                         }
                     }
 
@@ -373,6 +391,7 @@ fun HF_HomeScreen(
                     HF_PopUpCard(
                         text = when(exceptionString.value){
                             "invalid balance" -> "New total balance can't be smaller than current assigned balance"
+                            "under development" -> "This feature is not finished yet"
                             else -> ""
                         },
                         trigger = {trigger ->

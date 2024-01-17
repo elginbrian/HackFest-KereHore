@@ -9,11 +9,15 @@ Hacker: <br/>
     2. Muhammad Rizqi Aditya Firmansyah <br/>
 <br/>
 Screenshot: <br/>
-![Sign In Screen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/c18a15b7-0649-48df-b2b2-590ef97b0c56) 
-![Home Screen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/0c42f204-2c01-4120-9ee4-55713c43e366)
-![Report spending in Pocket Screen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/74dbcb9f-0103-4deb-acaf-8ac531ab790a)
-![Spending History](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/f27fba3c-6d65-41ec-b9b4-2a57ba0c7cfa)
-![Insert Total Balance](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/42a752e8-3b81-453a-97c6-be5ca5d47e9f)
+![KereHore! HomeScreen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/bc73f650-8d64-44c4-be25-e7a4f058a4eb)
+![KereHore! PocketPage](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/e00473f2-919b-4167-980f-76f41fd3eb45)
+![KereHore! PocketScreen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/32a445ab-d83f-458b-a381-c38de539426f)
+![KereHore! HistoryScreen](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/3bbc444e-9e8d-46e8-aa28-ff460649f375)
+![KereHore! Empty](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/0938b13b-98f5-403e-a1e1-6f5c9b163dd2)
+![KereHore! Add New Pocket](https://github.com/elginbrian/HackFest-KereHore/assets/132267129/d74ec554-0872-4ec7-8f61-922a636ac366)
+
+
+
 
 
 

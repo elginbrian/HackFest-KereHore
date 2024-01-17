@@ -22,5 +22,8 @@ data class HF_PocketObject(
     var pocketBalance: String = "0.0",
 
     @ColumnInfo(name = "pocket_history")
-    var pocketHistory: String = ""
+    var pocketHistory: String = "",
+
+    //@ColumnInfo(name = "pocket_timestamp")
+    //var pocketTimestamp: String = "",
 )

@@ -2,7 +2,7 @@ package com.hackfest.KereHore.database
 
 data class HF_DummyTemplate(
     val pocketID: String,
-    val pocketTitle: String,
+    var pocketTitle: String,
     val pocketDescription: String,
     val pocketBalance: String
 )
@@ -18,7 +18,7 @@ fun HF_GetDummies(): List<HF_DummyTemplate> {
 
         HF_DummyTemplate(
             pocketID = "002",
-            pocketTitle = "Fuel and Gas",
+            pocketTitle = "Car water :)",
             pocketDescription = "Brrrr....",
             pocketBalance = "25.000"
         ),
@@ -28,6 +28,13 @@ fun HF_GetDummies(): List<HF_DummyTemplate> {
             pocketTitle = "Saving",
             pocketDescription = "Im gonna be rich!",
             pocketBalance = "100.000"
+        ),
+
+        HF_DummyTemplate(
+            pocketID = "004",
+            pocketTitle = "HACKFEST",
+            pocketDescription = "Third Stage",
+            pocketBalance = "25.000"
         )
     )
 }

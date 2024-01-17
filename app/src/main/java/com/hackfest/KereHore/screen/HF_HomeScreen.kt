@@ -242,7 +242,7 @@ fun HF_HomeScreen(
                             }
                             HF_CircleButton(imageVector = Icons.Default.Home) {trigger ->
                                 if(trigger.isNotEmpty()){
-                                    //displayDebug.value = !displayDebug.value
+                                    navController.navigate(route = HF_NavEnum.HF_NEW_HomeScreen.name)
                                 }
                             }
                             HF_CircleButton(imageVector = Icons.Default.AccountCircle){trigger ->

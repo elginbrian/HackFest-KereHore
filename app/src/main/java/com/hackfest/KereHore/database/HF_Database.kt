@@ -8,13 +8,13 @@ import com.hackfest.KereHore.model.HF_TotalBalanceObject
 import com.hackfest.KereHore.util.ListConverter
 import com.hackfest.KereHore.util.UUIDConverter
 
-@Database(entities = [HF_PocketObject::class], version = 7, exportSchema = false)
+@Database(entities = [HF_PocketObject::class], version = 8, exportSchema = false)
 @TypeConverters(UUIDConverter::class)
 abstract class HF_Database: RoomDatabase(){
     abstract fun HF_DatabaseDao(): HF_DatabaseDao
 }
 
-@Database(entities = [HF_TotalBalanceObject::class], version = 7, exportSchema = false)
+@Database(entities = [HF_TotalBalanceObject::class], version = 8, exportSchema = false)
 @TypeConverters(UUIDConverter::class)
 abstract class HF_Database2: RoomDatabase(){
     abstract fun HF_DatabaseDao2(): HF_DatabaseDao2

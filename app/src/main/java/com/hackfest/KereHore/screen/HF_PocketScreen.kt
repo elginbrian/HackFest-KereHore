@@ -137,7 +137,6 @@ fun HF_PocketScreen(
                                 if(trigger.isNotEmpty()){
                                     navController.navigate(route = HF_NavEnum.HF_HomeScreen.name)
                                     deleteThisPocket(pocket[0].pocketID)
-                                    context.recreate()
                                 }
                             }
 

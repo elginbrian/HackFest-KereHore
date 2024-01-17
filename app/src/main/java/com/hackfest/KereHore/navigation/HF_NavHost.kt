@@ -21,13 +21,15 @@ import com.hackfest.KereHore.screen.HF_HomeScreen
 import com.hackfest.KereHore.screen.HF_PocketScreen
 import com.hackfest.KereHore.screen.HF_SignInScreen
 import com.hackfest.KereHore.screen.HF_SignInViewModel
-import com.hackfest.KereHore.screen.HF_SubscriptionScreen
 import com.hackfest.KereHore.screen.HF_ViewModel
 import com.hackfest.KereHore.screen.HF_ViewModel2
 import com.hackfest.KereHore.signIn.HF_GoogleAuthUIClient
 import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalContext
-
+import com.hackfest.KereHore.screen.HF_NEW_HistoryScreen
+import com.hackfest.KereHore.screen.HF_NEW_HomeScreen
+import com.hackfest.KereHore.screen.HF_NEW_PocketPage
+import com.hackfest.KereHore.screen.HF_NEW_PocketScreen
 
 
 @Composable
@@ -51,7 +53,7 @@ fun HF_NavHost(
 
     NavHost(
         navController = navController,
-        startDestination = HF_NavEnum.HF_SignInScreen.name
+        startDestination = HF_NavEnum.HF_NEW_HomeScreen.name
     ) {
         composable(HF_NavEnum.HF_SignInScreen.name) {
             val launcher = rememberLauncherForActivityResult(
@@ -106,6 +108,46 @@ fun HF_NavHost(
             )
         }
 
+        composable(HF_NavEnum.HF_NEW_HomeScreen.name){
+            HF_NEW_HomeScreen(
+                navController = navController,
+                pocket = pocket,
+                totalBalance = totalBalance,
+                addTotalBalance = { HF_ViewModel2.addTotalBalance(it) },
+                deleteAllBalance = { HF_ViewModel2.deleteAllBalance(it) }
+            )
+        }
+
+        composable(HF_NavEnum.HF_NEW_PocketPage.name){
+            HF_NEW_PocketPage(
+                navController = navController,
+                pocket = pocket,
+                addPocketObject = { HF_ViewModel.addPocket(it) },
+                removePocketObject = { HF_ViewModel.removePocket(it) },
+                deleteAllPocket = { HF_ViewModel.deleteAllPocket(it) },
+                totalBalance = totalBalance
+            )
+        }
+
+        composable(HF_NavEnum.HF_NEW_HistoryScreen.name){
+            HF_NEW_HistoryScreen(navController = navController, pocket = pocket, totalBalance = totalBalance)
+        }
+
+        composable(
+            HF_NavEnum.HF_NEW_PocketScreen.name+"/{pocket}",
+            arguments = listOf(navArgument(name = "pocket"){type = NavType.StringType})
+        ){
+            backStackEntry ->
+            HF_NEW_PocketScreen(
+                navController = navController, backStackEntry.arguments?.getString("pocket"),
+                pocketList = pocket,
+                totalBalance = totalBalance,
+                addPocketBalance = { HF_ViewModel.updatePocket(pocketID = it.first, pocketBalance = it.second)} ,
+                reportSpending = { HF_ViewModel.reportSpending(pocketID = it.first, pocketSpending = it.second, pocketBalance = it.third) },
+                deleteThisPocket = { HF_ViewModel.removePocket(it) },
+                addTotalBalance = { HF_ViewModel2.addTotalBalance(it) }
+            )
+        }
         composable(
             HF_NavEnum.HF_PocketScreen.name+"/{pocket}",
             arguments = listOf(navArgument(name = "pocket"){type = NavType.StringType})
@@ -122,12 +164,6 @@ fun HF_NavHost(
                 totalBalance       = totalBalance,
                 //updateTotalBalance = { HF_ViewModel2.updateTotalBalance(totalBalanceID = it.first, totalBalance = it.second)}
                 addTotalBalance    = { HF_ViewModel2.addTotalBalance(it)}
-            )
-        }
-
-        composable(HF_NavEnum.HF_SubscriptionScreen.name){
-            HF_SubscriptionScreen(
-                //navController = navController
             )
         }
     }
